@@ -29,8 +29,8 @@
 // 如果context为空，返回函数 。。。，就是返回原值。
 
 ```
- 值得借鉴的地方： context === void 0 判断是否为空
- 
+ 值得借鉴的地方： context === void 0 判断是否为空。void 0  === undefined i
+
 解析：
 
  *  argCount == 1的情况，执行单值的
@@ -41,7 +41,7 @@
 
 ###2. 判断是否是数组的思路
 
- 1  通过获取length属性，
+ *  通过获取length属性，
    
    ```
    var property = function(key) {
@@ -52,7 +52,7 @@
 
    ```
    
-2  并且判断length属性是否为数值，length》=0，length<值，
+ *  并且判断length属性是否为数值，length》=0，length<值，
    
    ```
       typeof length == 'number' && length >= 0 && length <= MAX_ARRAY_INDEX;
