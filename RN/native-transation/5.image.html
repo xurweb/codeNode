@@ -1,0 +1,262 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<style>
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    color: #737373;
+    background-color: white;
+    margin: 10px 13px 10px 13px;
+}
+table {
+	margin: 10px 0 15px 0;
+	border-collapse: collapse;
+}
+td,th {	
+	border: 1px solid #ddd;
+	padding: 3px 10px;
+}
+th {
+	padding: 5px 10px;	
+}
+
+a {
+    color: #0069d6;
+}
+a:hover {
+    color: #0050a3;
+    text-decoration: none;
+}
+a img {
+    border: none;
+}
+p {
+    margin-bottom: 9px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #404040;
+    line-height: 36px;
+}
+h1 {
+    margin-bottom: 18px;
+    font-size: 30px;
+}
+h2 {
+    font-size: 24px;
+}
+h3 {
+    font-size: 18px;
+}
+h4 {
+    font-size: 16px;
+}
+h5 {
+    font-size: 14px;
+}
+h6 {
+    font-size: 13px;
+}
+hr {
+    margin: 0 0 19px;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+}
+blockquote {
+    padding: 13px 13px 21px 15px;
+    margin-bottom: 18px;
+    font-family:georgia,serif;
+    font-style: italic;
+}
+blockquote:before {
+    content:"\201C";
+    font-size:40px;
+    margin-left:-10px;
+    font-family:georgia,serif;
+    color:#eee;
+}
+blockquote p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 18px;
+    margin-bottom: 0;
+    font-style: italic;
+}
+code, pre {
+    font-family: Monaco, Andale Mono, Courier New, monospace;
+}
+code {
+    background-color: #fee9cc;
+    color: rgba(0, 0, 0, 0.75);
+    padding: 1px 3px;
+    font-size: 12px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+pre {
+    display: block;
+    padding: 14px;
+    margin: 0 0 18px;
+    line-height: 16px;
+    font-size: 11px;
+    border: 1px solid #d9d9d9;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+pre code {
+    background-color: #fff;
+    color:#737373;
+    font-size: 11px;
+    padding: 0;
+}
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:10px auto;
+    }
+}
+@media print {
+	body,code,pre code,h1,h2,h3,h4,h5,h6 {
+		color: black;
+	}
+	table, pre {
+		page-break-inside: avoid;
+	}
+}
+</style>
+<title>5.Image</title>
+
+</head>
+<body>
+<h1>5.Image</h1>
+
+<h3>静态图片资源</h3>
+
+<p>0.14版本之后，RN对图片的处理采用统一的形式，不管是在ios还是android都是一样的。形如</p>
+
+<pre><code> &lt;Image source={'./my-icon.png'}&gt;
+</code></pre>
+
+<p>图片名称的解决方案和JS模块类似。举上里说，当组件require图片的时候，包会在相同的路径下寻找my-icon.png这个图片。并且，如果你有两个图片，my-icon.ios.png and my-icon.android.png， 包会跟进你所运行的平台只能加载。</p>
+
+<p>你也可以用@2x,@3x, 等在文件名后面加后缀的方法区别不同屏幕需求。 如果你有如下的文件结构：
+ |<strong>button.js
+ |</strong>img
+    |<strong>checkout@2x.png
+    |</strong>checkout@3x.png</p>
+
+<p>在buttton.js中的代码如下</p>
+
+<pre><code>    &lt;Image source={require('./img/check.png')} /&gt;
+</code></pre>
+
+<p>包会根据屏幕的分辨率来加载图片，比如在iphone 5s 会运用@2x.png 在Nexus 会运用@3x.png。如果没有适合屏幕的图片，将会选择最合适的那个。</p>
+
+<p>优势便利的地方：</p>
+
+<ol>
+<li>在ios和安装上一样</li>
+<li>图片在你js代码相同的目录下。组件自己拥有的，私有性。</li>
+<li>没有全局的命名空间，所以你不用当心命名冲突。</li>
+<li>只有真正使用到的图片，才会被包含进你的app.</li>
+<li>删除，修改图片，不用编译，只用刷新下就可以啦。</li>
+</ol>
+
+
+<p>为了能够有以上那些有点，图片的名称在require中要是已知的，静态的，不能是表达式：
+比如</p>
+
+<pre><code>&lt;Image source={require('./my-icon.png')}&gt;
+或者现定义 变量
+
+var icon = this.props.active? require('./my-icon-active.png'):require('./my-icon-inactive.png');
+&lt;Image source={icon}&gt;
+</code></pre>
+
+<h3>来自混合型App's的图片资源</h3>
+
+<p>如果你在做一个混合型app（有些UIs是RN的，有些UI是客户端平台的代码），你仍然可以用那些已经绑定到app的代码，（ios,通过Xcode资源目录，安卓drawable文件夹）</p>
+
+<pre><code>&lt;Image source={{uri: 'app_icon'}} style={width:40, height:40}/&gt;
+// 注意： 这种形式没有提供安全检查，需要你保证在这些运用中的图片的安全性，而且也要自己手动配置宽高了。
+</code></pre>
+
+<h3>网络图片</h3>
+
+<p>一些图片，可能不需要在编译时候展示，你需要动态的加载保证下载的大小。不像静态资源，你需要手动的设置图片大小。</p>
+
+<pre><code>&lt;Image source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}}
+
+        style={{width:400, height:400}} /&gt;
+// 需要定义宽度和高度，
+</code></pre>
+
+<h3>本地文件系统中的图片</h3>
+
+<p>见<a href="https://facebook.github.io/react-native/docs/cameraroll.html">CameraRoll</a> 用本地资源，这是Images.xcassets之外的。
+// 这里不太懂，什么是Images.xcassets？</p>
+
+<h5>最佳相册图片</h5>
+
+<p>ios 存储了很多类型小的图片在你的相册中，这就是为什么ios能够选择比较合适的图片大小的原因。你应该也不想在一个200*200的缩略图里展示一个最大size的图片。如果存在一个最佳选择，RN会智能的选中，否则，从最接近的尺寸开始缩小，选择第一个满足条件的，并且保证至少大于50%， 这是为了防止失去焦点。上述，都是默认进行的，不需要你写相关代码。</p>
+
+<h3>为什么可以自动设置尺寸</h3>
+
+<p>在浏览器中，如果你不给图片设置一个尺寸，浏览器就会渲染成一个0*0的元素，下载图片 ，然后根据正确的尺寸渲染这个图片。这里的最大问题是在图片加载的同时，你的UI一直在跳动，这里会出现不好的用户体验。</p>
+
+<p>在RN中，这种行为有意的没有去实现。 更多的是需要开发者知道远程图片的大小或者比例。这样会带来更好的用户体验。</p>
+
+<p>静态资源在app上加载，是通过<code>requier('./my-icon.png')</code>这种语法形式，能够自动设置大小是因为他们的大小在载入时是已知的。</p>
+
+<pre><code>{"__packager_asset":true,"path":"/Users/react/HelloWorld/my-icon.png","uri":"my-icon.png","width":591,"height":573}
+</code></pre>
+
+<h3>资源作为对象</h3>
+
+<p>在reactNative中，比较有意思的一个描述是将src属性命名成source，不用字符串形式，而是用带有uri属性的对象。</p>
+
+<pre><code>&lt;Image source={{uri: 'somethimg.jpg'}}&gt;
+</code></pre>
+
+<p>在基础设施层，它允许我们在obj中携带数据。比如，如果你使用的是<code>require('./my-icon.png')</code>,那我们就可以添加他的真实path和size在其中（这些信息可能不依赖于现状，可能在未来会改变）。这也是一个将来的证据，比如，有些时候我们希望用雪碧图，不能用{uri:...}, 而是输出{uri:..crop:{left:10, top:5 , width: 20, height: 40}}, 并且能在所有存在需求的地方使用雪碧图。</p>
+
+<h3>背景图片-- 通过包围子组件</h3>
+
+<p>对应web开发者，背景图片是一种很常见的需求。对于这种需求的处理方法是： 简单的创建一个<Image>组件，然后添加任意的子组件在其中，这些子组件就在图片之上了。</p>
+
+<pre><code>&lt;Image source={uri...}&gt;
+    &lt;Text&gt;Inside&lt;/Text&gt;
+&lt;/Image&gt;
+</code></pre>
+
+<h3>Off-thread Decoding？？没看懂</h3>
+</body>
+</html>
