@@ -1,6 +1,12 @@
 #react-redux 源码解析
 
-###react-redux源码解析
+###目录结构
+
+
+    |--provider.js react-redux源码
+    |--content.js  react-redux源码
+    |--redux, react-redux, react直接的关系
+   
 
 ####provider.js
 功能：生成Provider组件。主要获取props.store 存到自己的this.store。 给孩子想要的props给孩子。
