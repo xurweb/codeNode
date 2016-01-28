@@ -53,12 +53,9 @@ action就是普通的js对象，返回干了什么事的描述，一般情况下
     接收action, state => newstate。 action已经在上面定义了，state最开始的时候是undefine, 所以要定义初始值。
     
      
-     ```
-     
+   ```     
      //创建 reduce-demo
-    	 
-     const initialState = ..
- 	 
+     const initialState = .. 	 
  	 function todoApp(state = initialState, action) {
  	 	switch(action.type) {
  	 		case SET_File: 
@@ -73,7 +70,7 @@ action就是普通的js对象，返回干了什么事的描述，一般情况下
  	 }
  	// 注意：不能修改state, 用assigin（）返回。
      
-     ```
+  ```
     
 
 
@@ -85,14 +82,14 @@ action就是普通的js对象，返回干了什么事的描述，一般情况下
    
    
     ```
-    import { combineReducers } from 'redux';
+     import { combineReducers } from 'redux';
 
-	 const todoApp = combineReducers({
- 	  visibilityFilter,
- 	  todos
-     });
+	  const todoApp = combineReducers({
+ 	  	visibilityFilter,
+ 	  	todos
+      });
 
-    export default todoApp;
+     export default todoApp;
     
     ```	
     
@@ -102,16 +99,15 @@ store 能维持应用的 state，并在当你发起 action 的时候调用 reduc
 1. 创建store
 	
 	```
-	import { createStore } from 'redux'
-	import todoApp from './reducers'
-
-	let store = createStore(todoApp)
+	  import { createStore } from 'redux'
+	  import todoApp from './reducers'
+	  let store = createStore(todoApp)
 	
 	```
 2. 分发action
  
    ```
-    // reduce 是一件定义好的action函数.
+     // reduce 是一件定义好的action函数.
      store.dispatch(action)
      
    ```
