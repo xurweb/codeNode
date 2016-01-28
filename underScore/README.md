@@ -1,4 +1,5 @@
 #underscore源码学习
+underScore.js是一个专门处理数据类型的库，里面有丰富的函数式编程，闭包等。
 ###doc 目录
 
 * [underscore源码解析-框架](underscore_1.md)
