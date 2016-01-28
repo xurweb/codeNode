@@ -53,7 +53,7 @@ action就是普通的js对象，返回干了什么事的描述，一般情况下
     接收action, state => newstate。 action已经在上面定义了，state最开始的时候是undefine, 所以要定义初始值。
     
      
-  ```     
+```     
      //创建 reduce-demo
      const initialState = .. 	 
  	 function todoApp(state = initialState, action) {
@@ -70,7 +70,7 @@ action就是普通的js对象，返回干了什么事的描述，一般情况下
  	 }
  	 // 注意：不能修改state, 用assigin（）返回。
      
-  ```
+```
     
 
 

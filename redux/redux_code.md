@@ -129,7 +129,7 @@ function combineReducers (reducers) {
           
  demo
  
- ```
+```
  function addAction(text){
  	return {
  		type: AddText,
@@ -150,17 +150,17 @@ function combineReducers (reducers) {
  
  // 这个绑定action之后，不需要通过store.dispatch(action)触发 =》变换了一种调用方式，ba(test)
  
- ```
+```
  
  源码
  
-  ```
+```
   return (...args) => dispatch( actionCreator(...args))
   // actionCreator(...args) => 返回的是action。
   // 调用 dispatch(action)
   
   
-  ```
+```
 
 
 ####bindActionCreators
