@@ -1,5 +1,6 @@
 #underScore 源码解析（3）
 
+##array
 ###1 initial（）
 
 ```

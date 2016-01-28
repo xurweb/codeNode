@@ -1,6 +1,6 @@
 #underScore 源码解析（4）
 
-
+##function
 ###memoize
 
 ```

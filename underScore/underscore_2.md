@@ -1,6 +1,6 @@
 #underScore源码解析（2）
 
-###collections相关
+###集合
 
 ####1. 核心内部函数介
 
