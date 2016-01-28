@@ -52,28 +52,24 @@ action就是普通的js对象，返回干了什么事的描述，一般情况下
  
     接收action, state => newstate。 action已经在上面定义了，state最开始的时候是undefine, 所以要定义初始值。
     
-     
-```     
-     //创建 reduce-demo
-     const initialState = .. 	 
- 	 function todoApp(state = initialState, action) {
- 	 	switch(action.type) {
- 	 		case SET_File: 
- 	 			return object.assign({}, state, {
- 	 				visibilityFile: action.fileter
- 	 		    });
- 	 		 case Add_TODO: 
- 	 		 	return object.assign({}, state, {
- 	 		 		todos: [..state.todos, {text:actiontext,completed:false}]
- 	 		 	});
- 	 	}
- 	 }
- 	 // 注意：不能修改state, 用assigin（）返回。
-     
-```
+    ```
+       //创建 reduce-demo
+   const initialState = ..   
+   function todoApp(state = initialState, action) {
+    switch(action.type) {
+      case SET_File: 
+        return object.assign({}, state, {
+          visibilityFile: action.fileter
+          });
+       case Add_TODO: 
+        return object.assign({}, state, {
+          todos: [..state.todos, {text:actiontext,completed:false}]
+        });
+    }
+   }
+   // 注意：不能修改state, 用assigin（）返回。
     
-
-
+    ```
  3. reducer合并 
  
      出现背景：随着维护的state越来越大，不能一个reducer负责整个树，根据state的内容，将state拆分，每个reducer负责一个小部分。
