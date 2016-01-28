@@ -1,13 +1,27 @@
 #redux源码解析
 
+代码结构redux目录
+
+      |--index.js 入口，返回下面几个函数接口
+      |
+      |--createStore.js  创建store, 建立store的相关方法
+      |
+      |--combineReducers.js 合并多个reducer 返回合并后的reducer
+      |
+      |--bindActionCreators.js 形成一个可以自己dispatch的action,和react-redux有点关系
+      |
+      |--applyMiddleware.js 中间件相关
+      |
+      |--compose.js 其实是一个功能函数，柯里化函数。在中间件里用到
 ###createStore.js 
+函数功能：生成store,并为store实现dispatch函数，subscribe函数，getState，replaceReducer方法。
 
 ####1 代码的组织结构
 
 ```
 export defalut function(reducer, inintalState) {
 
-// 输入参数型，这种方式用class能用吗？
+// 输入参数型，这种方式用class能用吗？不能，这里用的是函数，没有用class
 
 // 返回对象的参数
 
@@ -112,7 +126,7 @@ function combineReducers (reducers) {
 输入参数 : actionCreator, 创建action的函数
           dispatch: 调用action的函数，
           
- eg
+ demo
  
  ```
  function addAction(text){

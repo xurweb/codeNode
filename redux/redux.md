@@ -1,25 +1,32 @@
 #redux
 
 ###1 什么是redux？出现的需求背景是什么？可以做什么用。
-类比：redux类似 Array.propoty.reduce()// 数据状态迭代。
 
-1. 在reudx中，state变化只能通过触发action来，action就是描述发生了什么的普通对象
-2. 对应action, reducer 指明如何跟新state。他通过输入旧state,action ==>新state
-3. 如何联系起，action和reducer呢？store,可以通过dispatch（）。应用中所有的state都存储在stroe中, 需要存储范式的形式，什么事范式呢？就是减少沉余。
+####什么是redux
+1. reducx是用来统一管理数据流的。可以和很多前端框架一起使用，比如Ag，react,jq等。
+2. react主要包含三个东西 store, action, reduce。 其中store就是维护所有的数据state tree的。action，是描述你做了什么动作的。 reducer就是根据你做的动作对state进行迭代。这种迭代就类似于Array.propoty.reduce()// 数据状态迭代。reducer (state, action) => nextState
 
- ####需求背景
-  state太多无法管理，前端新需求服务端渲染，路由转跳。主要原因来自于：变化和异步融合在一起。
-####1.2redux介绍
+
+####需求背景
+  state太多无法管理，前端新需求服务端渲染，路由转跳等。主要原因来自于：变化和异步融合在一起。
+####可以做什么用 
+可以统一管理数据，而且数据的变化只有action来触发。
+
+妈妈再也不用担心你的数据流乱的自己都认不得了。 
+
+可以添加中间件，记录整个state的变化。
+
+###2 redux 具体介绍
 三大原则
 
-1. 所有的数据state都存储在一个obj tree中，并且位于唯一一个store钟。
+1. 所有的数据state都存储在一个obj tree中，并且位于唯一一个store中。
 2. state只能通过触发action改变state。action描述事件的普通对象。
 3. 为了描述action如何改变state, 需要编写reducers。
 
 ####action
 action就是普通的js对象，返回干了什么事的描述，一般情况下就是对象中包含了type类型。
 
-创建action
+创建action-demo
 
 ```
 export function increment () {
@@ -31,7 +38,7 @@ export function increment () {
 ```
  action 只是描述了只是描述了有事情发生了这一事实，并没有指明应用如何更新 state。而这正是 reducer 要做的事情。
 ####reducer
-告诉他人，根据不同的action类型，迭代state, 生成新的state。
+作用：告诉他人，根据不同的action类型，迭代state, 生成新的state。
 
  1. 设计state的结构
  
@@ -41,7 +48,7 @@ export function increment () {
  
  	接收action, state => newstate。 action已经在上面定义了，state最开始的时候是undefine, 所以要定义初始值。
    
-    创建reduce
+    创建 reduce-demo 
  	
  	```
  	 const initialState = ..
@@ -62,19 +69,22 @@ export function increment () {
  	```
  3. redux合成
  
-   将整个redux分解成一小块，每个小块负责处理state对象数据中的一部分。传入的不在是state，可以是state中的任意数据类型。在整合的时候，主redux将相应的部分传递给redux小块。
+   `出现背景`：随着维护的state越来越大，不能一个reducer负责整个树，根据state的内容，将state拆分，每个reducer负责一个小部分。
+ 
+   将整个redux分解成一小块，每个小块负责处理state对象数据中的一部分。传入的不在是state，可以是state中的 任意数据类型。在整合的时候，主redux将相应的部分传递给redux小块。
    
-  ```
-  import { combineReducers } from 'redux';
+   
+   ```
+    import { combineReducers } from 'redux';
 
-	const todoApp = combineReducers({
+	 const todoApp = combineReducers({
  	  visibilityFilter,
  	  todos
-  });
+     });
 
-  export default todoApp;
+    export default todoApp;
   
-  ```	
+   ```	
 ####store 
 store 能维持应用的 state，并在当你发起 action 的时候调用 reducer.
 
@@ -87,31 +97,18 @@ store 能维持应用的 state，并在当你发起 action 的时候调用 reduc
 	let store = createStore(todoApp)
 	```
 2. 分发action
+ 
+   ```
+    // reduce 是一件定义好的action函数.
+     store.dispatch(action)
+  ```
 
-
-```
-// reduce 是一件定义好的action函数.
-store.dispatch(action)
-```
-
-###2 redux和react是什么关系
+###3 redux和react是什么关系
 没啥关系，就是用react-redux联系起来了。 当然redux可以用其他的中间链接和vue,ang,jq等一起使用。
 那问题来啦react-redux是什么东西呢？
-#### 2.1  react-redux
+
 疑惑？
 this.props中的内容是如何传进去的？
 
-react-redux，Redux-Dev-Tools
+见分析：react-redux，provider ,connect。
 
-###3 redux高级
-异步action
-
-Middleware
-
-###4 源码
-
-###5 问题
-1 组件直接没有数据隔离？整个项目都用一个数据state?
-对于不需要组件减交互数据的组件不需要使用，跨越component树的状态交互才用Redux，一棵树下props和state足以，性能也好。
-
-###6 demo
