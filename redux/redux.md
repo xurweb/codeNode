@@ -50,12 +50,13 @@ action就是普通的js对象，返回干了什么事的描述，一般情况下
 
  2. action处理
  
-   接收action, state => newstate。 action已经在上面定义了，state最开始的时候是undefine, 所以要定义初始值。
-   
-  创建 reduce-demo 
- 	
- ```
-  const initialState = ..
+    接收action, state => newstate。 action已经在上面定义了，state最开始的时候是undefine, 所以要定义初始值。
+    
+     
+     ```
+     //创建 reduce-demo
+    	 
+     const initialState = ..
  	 
  	 function todoApp(state = initialState, action) {
  	 	switch(action.type) {
@@ -70,15 +71,21 @@ action就是普通的js对象，返回干了什么事的描述，一般情况下
  	 	}
  	 }
  	// 注意：不能修改state, 用assigin（）返回。
- ```
-3. redux合成
+  	
+
+     
+     ```
+    
+
+
+ 3. reducer合并 
  
-   `出现背景`：随着维护的state越来越大，不能一个reducer负责整个树，根据state的内容，将state拆分，每个reducer负责一个小部分。
+     出现背景：随着维护的state越来越大，不能一个reducer负责整个树，根据state的内容，将state拆分，每个reducer负责一个小部分。
  
-   将整个redux分解成一小块，每个小块负责处理state对象数据中的一部分。传入的不在是state，可以是state中的 任意数据类型。在整合的时候，主redux将相应的部分传递给redux小块。
+     将整个redux分解成一小块，每个小块负责处理state对象数据中的一部分。传入的不在是state，可以是state中的 任意数据类型。在整合的时候，主redux将相应的部分传递给redux小块。
    
    
-  ```
+    ```
     import { combineReducers } from 'redux';
 
 	 const todoApp = combineReducers({
@@ -87,8 +94,9 @@ action就是普通的js对象，返回干了什么事的描述，一般情况下
      });
 
     export default todoApp;
-  
-  ```	
+    
+    ```	
+    
 ####store 
 store 能维持应用的 state，并在当你发起 action 的时候调用 reducer.
 
