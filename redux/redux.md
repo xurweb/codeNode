@@ -54,6 +54,7 @@ action就是普通的js对象，返回干了什么事的描述，一般情况下
     
      
      ```
+     
      //创建 reduce-demo
     	 
      const initialState = ..
@@ -71,8 +72,6 @@ action就是普通的js对象，返回干了什么事的描述，一般情况下
  	 	}
  	 }
  	// 注意：不能修改state, 用assigin（）返回。
-  	
-
      
      ```
     
@@ -107,12 +106,14 @@ store 能维持应用的 state，并在当你发起 action 的时候调用 reduc
 	import todoApp from './reducers'
 
 	let store = createStore(todoApp)
+	
 	```
 2. 分发action
  
    ```
     // reduce 是一件定义好的action函数.
      store.dispatch(action)
+     
    ```
 
 ###3 redux和react是什么关系

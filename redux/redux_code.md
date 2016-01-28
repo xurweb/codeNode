@@ -54,6 +54,7 @@ return {
   }
 // 原来就是把注册函数放到一个数组里。
 // 比较好的是，返回的是解除监听函数，调用遍历时就可以解封了。
+
 ```
 
 ###combineReducers.js
@@ -148,6 +149,7 @@ function combineReducers (reducers) {
  console.log(store.getState())  // state: use_name
  
  // 这个绑定action之后，不需要通过store.dispatch(action)触发 =》变换了一种调用方式，ba(test)
+ 
  ```
  
  源码
