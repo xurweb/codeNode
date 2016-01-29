@@ -4,7 +4,7 @@
 
 ####什么是redux
 
-1. reducx是用来统一管理数据流的。可以和很多前端框架一起使用，比如Ag，react,jq等。
+1. redux是用来统一管理数据流的。可以和很多前端框架一起使用，比如Ag，react,jq等。
 2. redux主要包含三个东西 store, action, reduce。 其中store就是维护所有的数据state tree的。action，是描述你做了什么动作的。 reducer就是根据你做的动作对state进行迭代。这种迭代就类似于Array.propoty.reduce()// 数据状态迭代。reducer (state, action) => nextState
 
 
