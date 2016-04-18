@@ -3,9 +3,9 @@
 
 | 内容 | 链接|
 |---|-------|
-| underscore 源码解析|[链接](./underScore)|
-| react , redux 源码解析| [链接](./redux)|
-| react native| [链接](./RN)|
-| node js相关|  [链接](./nodeJS)|
-| webGL |[链接](./webGL)| 
-| 其他 | [链接](./others)|
+| underscore 源码解析|[go](./underScore)|
+| react , redux 源码解析| [go](./redux)|
+| react native| [go](./RN)|
+| node js相关|  [go](./nodeJS)|
+| webGL |[go](./webGL)| 
+| 其他 | [go](./others)|
